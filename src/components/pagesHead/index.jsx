@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-
 import { boxClasses } from "@lib/classes";
-import logoSrc from "@assets/logo.svg";
 import accountIconSrc from "@assets/accountIcon.svg";
 import searchIconSrc from "@assets/searchIcon.svg";
 import hamburgerSrc from "@assets/hamburger.svg";
 import closeMenuSrc from "@assets/closeMenu.svg";
 import cartSrc from "@assets/cart.svg";
+
+import {
+  Logo
+} from "@components";
 
 export default function PagesHead(){
   const [navMenuIsOpen, setNavMenuIsOpen] = useState(false);
@@ -47,7 +49,7 @@ export default function PagesHead(){
       </div>
 
       <div className={boxClasses}>
-        <nav className="relative flex justify-between items-center py-5 border-b">
+        <nav className="relative flex justify-between items-center py-5 border-b mb-8">
 
             {/* left side nav links on large screens */}
             <ul className="hidden lg:flex gap-4 items-center">
@@ -55,8 +57,7 @@ export default function PagesHead(){
             </ul>
 
             {/* hamburger btn to open the nav menu on small screens */}
-            <button className="lg:hidden" 
-            onClick={()=>{setNavMenuIsOpen(!navMenuIsOpen)}}>
+            <button className="lg:hidden" onClick={()=>{setNavMenuIsOpen(!navMenuIsOpen)}}>
               {navMenuIsOpen ? 
               <img src={closeMenuSrc} alt='Close menu' /> :
               <img src={hamburgerSrc} alt='Open menu' /> }
@@ -64,8 +65,7 @@ export default function PagesHead(){
 
             {/* logo */}
             <a href="/">
-              <img src={logoSrc}
-              alt="Ballamas" className="max-[350px]:w-24"/>
+              <Logo />
             </a>
 
             {/* right side nav links on large screens*/}
@@ -91,7 +91,7 @@ export default function PagesHead(){
             </ul>
 
             {/* nav menu on small screens */}
-            <ul className={`bg-white lg:hidden w-full px-2 py-6 overflow-auto absolute
+            <ul className={`bg-white lg:hidden w-full overflow-auto absolute
             top-20 flex flex-col gap-5 items-center transition-all duration-[650ms]
             ${navMenuIsOpen ? "h-[500px] px-2 py-6" : "h-0 px-0 py-0"}`}
             >
