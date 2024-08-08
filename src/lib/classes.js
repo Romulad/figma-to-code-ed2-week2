@@ -1,0 +1,1 @@
+export const boxClasses = "mx-3 md:mx-8 lg:mx-14 xl:mx-20 2xl:mx-24"
