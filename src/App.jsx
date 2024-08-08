@@ -1,11 +1,11 @@
 import { 
-  Home 
+  HomePage 
 } from "@pages";
 
 function App() {
 
   return (
-    <Home />
+    <HomePage />
   )
 }
 

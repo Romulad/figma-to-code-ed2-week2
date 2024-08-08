@@ -1,15 +1,18 @@
 
 import {
-    PagesFooter,
-    PagesHead
+    PageWrapper
 } from "@components"
 
-export default function Home(){
+const title = "Ballamas - Home";
+
+export function Home(){
 
     return(
         <>
-        <PagesHead />
-        <PagesFooter />
         </>
     )
 }
+
+export default PageWrapper(
+    Home, { title }
+)
