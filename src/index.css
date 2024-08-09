@@ -35,6 +35,14 @@
     font-family: "chillax";
   }
 
+  .hero-section-bg{
+    background-image: url(./assets/menWithBlackShirt.svg);
+  }
+
+  .home-page-lastsection-bg{
+    background-image: url(./assets/menSit.svg);
+  }
+
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;

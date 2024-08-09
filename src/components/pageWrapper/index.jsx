@@ -17,13 +17,13 @@ export default function PageWrapper(Page, pageDatas={}){
         }, [])
 
         return(
-            <>
-            <PagesHead />
-            <main className={boxClasses}>
-                <Page {...props}/>
-            </main>
-            <PagesFooter />
-            </>
+            <div className="max-w-[1520px] mx-auto">
+                <PagesHead />
+                <main className={boxClasses}>
+                    <Page {...props}/>
+                </main>
+                <PagesFooter />
+            </div>
         )
     }
 }

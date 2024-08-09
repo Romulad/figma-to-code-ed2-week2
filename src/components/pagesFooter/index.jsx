@@ -76,8 +76,9 @@ export default function PagesFooter(){
                 </h3>
                 <ul className="flex flex-col gap-2">
                     {linkDatas
-                    .map((data)=>(
-                    <li className="text-white opacity-60 text-sm group">
+                    .map((data, index)=>(
+                    <li className="text-white opacity-60 text-sm group" 
+                    key={index.toString() + data.name.toString()}>
                         <a href={data.path} className="group-hover:underline" 
                         target={`${remote ? "_blank" : "_parent"}`}>
                             {data.name}
@@ -96,7 +97,7 @@ export default function PagesFooter(){
                     
                     <div>
                         <div className="mb-5">
-                            <Logo />
+                            <Logo className/>
                         </div>
 
                         <p className="text-white opacity-70 max-w-[550px] mb-4">

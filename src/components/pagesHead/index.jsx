@@ -91,9 +91,10 @@ export default function PagesHead(){
             </ul>
 
             {/* nav menu on small screens */}
-            <ul className={`bg-white lg:hidden w-full overflow-auto absolute
+            <ul className={`z-[100] bg-white lg:hidden w-full overflow-auto absolute
             top-20 flex flex-col gap-5 items-center transition-all duration-[650ms]
-            ${navMenuIsOpen ? "h-[500px] px-2 py-6" : "h-0 px-0 py-0"}`}
+            ${navMenuIsOpen ? "h-[500px] px-2 py-6" : "h-0 px-0 py-0"} rounded-bl-xl rounded-br-xl 
+            shadow-xl`}
             >
               {leftNavLinks}
               {rightNavLinks}
