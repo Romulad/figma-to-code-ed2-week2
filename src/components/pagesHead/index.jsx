@@ -49,7 +49,7 @@ export default function PagesHead(){
       </div>
 
       <div className={boxClasses}>
-        <nav className="relative flex justify-between items-center py-5 border-b mb-8">
+        <nav className=" flex justify-between items-center py-5 border-b mb-8">
 
             {/* left side nav links on large screens */}
             <ul className="hidden lg:flex gap-4 items-center">
@@ -92,7 +92,7 @@ export default function PagesHead(){
 
             {/* nav menu on small screens */}
             <ul className={`z-[100] bg-white lg:hidden w-full overflow-auto absolute
-            top-20 flex flex-col gap-5 items-center transition-all duration-[650ms]
+            top-36 left-0 flex flex-col gap-5 items-center transition-all duration-500
             ${navMenuIsOpen ? "h-[500px] px-2 py-6" : "h-0 px-0 py-0"} rounded-bl-xl rounded-br-xl 
             shadow-xl`}
             >

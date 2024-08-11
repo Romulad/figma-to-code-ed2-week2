@@ -19,3 +19,21 @@ export async function writeText(ref, inter){
         ref.current.textContent += toWrite[t]
     }
 }
+
+
+export const isVisibleByC = (element, exact=false, onBottom=true) =>{
+    // let scrollLen = window.scrollY;
+    let innerH = window.innerHeight;
+    let viewToElAtTop = (
+        element.getBoundingClientRect().top    
+    );
+    let viewToElAtB = (
+        element.getBoundingClientRect().bottom
+    );
+    if(onBottom){
+        return innerH > viewToElAtB
+    }else{
+        return exact ? (innerH/2) >= viewToElAtTop : innerH/1.05 > viewToElAtTop   
+    }
+        
+};

@@ -4,6 +4,7 @@ import {
 } from "@components";
 import menWithJacket from "@assets/menWithGrayJacket.svg";
 import arrowRightTopIcon from "@assets/arrowRightTop.svg";
+import classicMenImg from "@assets/classicMen.svg";
 
 import HeroSection from "./heroSection";
 import ProductTypeSection from "./productTypeSection";
@@ -53,8 +54,15 @@ export function Home(){
 
                 <div className="rounded-[25px] home-page-lastsection-bg 
                 h-[382px] max-w-[600px] w-full min-[310px]:w-[306px] 
-                min-[644px]:grow bg-cover bg-center bg-no-repeat">
+                min-[644px]:grow bg-cover bg-center bg-no-repeat
+                flex flex-col justify-center items-center text-center gap-5 px-4">
+                    <div>
+                        <img src={classicMenImg} alt="Classic men" />
+                    </div>
 
+                    <p className="text-white font-medium text-lg">
+                        We're changing the way things get made
+                    </p>
                 </div>
             </div>
         </div>

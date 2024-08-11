@@ -97,7 +97,9 @@ export default function PagesFooter(){
                     
                     <div>
                         <div className="mb-5">
-                            <Logo className/>
+                            <Logo 
+                            className='text-white'
+                            useWhite/>
                         </div>
 
                         <p className="text-white opacity-70 max-w-[550px] mb-4">
@@ -117,8 +119,8 @@ export default function PagesFooter(){
                         </form>
                     </div>
 
-                    <div className="flex justify-between text-white font-medium 
-                    min-[450px]:gap-16 gap-6 flex-wrap">
+                    <div className="flex text-white font-medium 
+                    lg:gap-14 gap-8 flex-wrap">
                         {/* let's keep things simple */}
 
                         <FooterLinkContainer 

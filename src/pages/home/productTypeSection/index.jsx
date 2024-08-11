@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import addToCartSrc from "@assets/addToCart.svg";
 import {
     ProductImgBox
 } from "@components";
-import { productDatas } from "@lib/datas";
+import { 
+    productDatas
+} from "@lib/datas";
+import { 
+    isVisibleByC 
+} from "@lib/utils.js";
+
 
 export default function ProductTypeSection(){
     const [currentType, setCurrentType] = useState('All');
@@ -15,10 +21,24 @@ export default function ProductTypeSection(){
         {type: "Unisex", count: "52"}
     ]
 
+    useEffect(()=>{
+        function smoothDisplay(ev){
+            document.querySelectorAll('.product')
+            .forEach(element => {
+                if(isVisibleByC(element)){
+                    element.classList.add("animate-fadInUp")
+                }
+            });
+        }
+        window.addEventListener('scroll', smoothDisplay);
+
+        return () => {window.removeEventListener('scroll', smoothDisplay)}
+    }, [])
+
     return(
         <>
         <div className="mb-16">
-            <ul className="mb-6 flex justify-center gap-3 flex-wrap">
+            <ul className="mb-6 flex sm:justify-center gap-3 flex-wrap">
                 {productTypes
                 .map((data, index)=>(
                     <li key={index} className="group">
@@ -40,7 +60,7 @@ export default function ProductTypeSection(){
                     productDatas
                     .map((data, index)=>(
                         <div className="w-full sm:w-[47%] md:w-[33%]
-                        lg:w-[30%] xl:w-1/4 flex justify-center"
+                        lg:w-[30%] xl:w-1/4 flex justify-center product opacity-0"
                         key={index}>
                             <div className="flex flex-col gap-3">
                                 <div className="relative 

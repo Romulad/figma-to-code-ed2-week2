@@ -5,6 +5,7 @@
         "@pages": ["./src/pages/*"],
         "@assets": ["./src/assets/*"],
         "@lib": ["./src/lib/*"],
+        "@api" : ["./src/api/*"]
       }
     },
   }

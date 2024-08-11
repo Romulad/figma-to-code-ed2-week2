@@ -24,7 +24,7 @@ export default function HeroSection(){
         <>
         <div className="hero-section-bg h-[400px] bg-no-repeat bg-center 
         bg-cover rounded-3xl bg-slate-50 flex flex-col gap-5 text-center items-center tex-white 
-        justify-center px-3 sm:px-5 mb-16">
+        justify-center px-3 sm:px-5 mb-16 max-[279px]:overflow-auto no-scrollbar">
             
             <div className="flex gap-4 items-center text-sm">
                 <span className="h-[1px] w-20 bg-slate-50 opacity-50"></span>
