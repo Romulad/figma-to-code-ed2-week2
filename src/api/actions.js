@@ -10,18 +10,21 @@ import {
 } from "@api/utils";
 
 
-export const fetchProductsByCollection = () => {
+export const fetchProductsByCollection = async () => {
     if(!localStorage.getItem(collectionKey)){
-        collections.forEach( async (collection) => {
+        const collectionDatas = {};
+        for(let r=0; r < collections.length; r++){
+            const collection = collections[r];
             const endPoint = `${baseRoute}${getCollectionQuery(collection.id)}`
             const resp = await fetch(endPoint);
             if(resp.ok){
-                const datas = await resp.json()
-                localStorage.setItem(collectionKey, JSON.stringify(datas))
+                const datas = await resp.json();
+                collectionDatas[collection.title.toLowerCase()] = datas;
             }else{
-
+                // error status code
             }
-        })
+        }
+        localStorage.setItem(collectionKey, JSON.stringify(collectionDatas))
     }
 }
 
@@ -49,8 +52,10 @@ export const fetchProductRecommendations = async (productId) => {
                     recommenDationKey, JSON.stringify(newRecommendations)
                 );
             }
+            return datas;
         }else{
-            // manage error based on the status code
+            // manage error based on the status code;
+            return [];
         }
     }
     

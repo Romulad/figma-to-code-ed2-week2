@@ -37,3 +37,7 @@ export const isVisibleByC = (element, exact=false, onBottom=true) =>{
     }
         
 };
+
+export const getDatasFromCollection = (collections) => {
+    return collections?.data.collection.products.edges
+}

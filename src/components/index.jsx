@@ -3,11 +3,13 @@ import PagesFooter from "@components/pagesFooter";
 import Logo from "@components/logo/";
 import PageWrapper from "@components/pageWrapper/";
 import ProductImgBox from "@components/productImgBox/";
+import FullProductBox from "@components/fullProductBox/";
 
 export {
     PagesHead,
     PagesFooter,
     Logo,
     PageWrapper,
-    ProductImgBox
+    ProductImgBox,
+    FullProductBox
 }

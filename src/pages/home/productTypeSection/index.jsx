@@ -1,31 +1,75 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import addToCartSrc from "@assets/addToCart.svg";
 import {
-    ProductImgBox
+    FullProductBox,
 } from "@components";
-import { 
-    productDatas
-} from "@lib/datas";
 import { 
     isVisibleByC 
 } from "@lib/utils.js";
-
+import { AppContext } from "@/context";
+import { collectionKey } from "@api/constant";
+import { getDatasFromCollection } from "@lib/utils";
 
 export default function ProductTypeSection(){
-    const [currentType, setCurrentType] = useState('All');
-    const productTypes = [
-        {type: "All", count: "132"},
-        {type: "Accessories", count: "13"},
-        {type: "Featured", count: "87"},
-        {type: "Unisex", count: "52"}
-    ]
+    const { dataState } = useContext(AppContext);
+    const collectionDatas = JSON.parse(
+        localStorage.getItem(collectionKey) || "{}"
+    );
+    const [productTypes, setProductTypes] = useState([]);
+    const [currentType, setCurrentType] = useState({});
+    const [currentEndIndex, setCurrentEndIndex] = useState(6);
+
+    useEffect(()=>{
+        if(Object.keys(collectionDatas).length > 0 ){
+            const datas = [
+                {
+                    type: "All",
+                    datas: [
+                        ...getDatasFromCollection(collectionDatas?.accessories),
+                        ...getDatasFromCollection(collectionDatas?.men),
+                        ...getDatasFromCollection(collectionDatas?.featured),
+                        ...getDatasFromCollection(collectionDatas?.women),
+                        ...getDatasFromCollection(collectionDatas?.unisex),
+                    ]
+                },
+                {
+                    type: "Accessories",
+                    datas: getDatasFromCollection(collectionDatas?.accessories),
+                    
+                },
+                {
+                    type: "Featured",
+                    datas: getDatasFromCollection(collectionDatas?.featured),
+        
+                },
+                {
+                    type: "Unisex",
+                    datas: getDatasFromCollection(collectionDatas?.unisex)
+                },
+                {
+                    type: "Men",
+                    datas: getDatasFromCollection(collectionDatas?.men)
+                },
+                {
+                    type: "Women",
+                    datas: getDatasFromCollection(collectionDatas?.women)
+                },
+            ]
+            setProductTypes(datas);
+        }
+    }, [dataState.dataIsLoading])
+
+    useEffect(()=>{
+        if(productTypes.length > 0){
+            setCurrentType(productTypes[0]);
+        }
+    }, [productTypes])
 
     useEffect(()=>{
         function smoothDisplay(ev){
             document.querySelectorAll('.product')
             .forEach(element => {
-                if(isVisibleByC(element)){
+                if(isVisibleByC(element, true, false)){
                     element.classList.add("animate-fadInUp")
                 }
             });
@@ -35,95 +79,66 @@ export default function ProductTypeSection(){
         return () => {window.removeEventListener('scroll', smoothDisplay)}
     }, [])
 
+    function onViewMoreBtnClick(){
+        if(currentType.datas.length > currentEndIndex){
+            setCurrentEndIndex(currentEndIndex + 4)
+        }
+    }
+
     return(
         <>
         <div className="mb-16">
             <ul className="mb-6 flex sm:justify-center gap-3 flex-wrap">
-                {productTypes
-                .map((data, index)=>(
+                {productTypes.length > 0 && 
+                productTypes
+                ?.map((data, index)=>(
                     <li key={index} className="group">
                         <button className={`flex items-center gap-2 
                         border border-black p-3 rounded-full text-black
                         group-hover:bg-black group-hover:text-white 
-                        ${currentType === data.type && " bg-black text-white"}`}
-                        onClick={()=>{setCurrentType(data.type)}}>
+                        ${currentType.type === data.type && " bg-black text-white"}`}
+                        onClick={()=>{setCurrentType(data), setCurrentEndIndex(6)}}>
                             <span>{data.type}</span>
-                            <span>{data.count}</span>
+                            <span>{data.datas.length}</span>
                         </button>
                     </li>
                 ))}
             </ul>
 
-            <div className="flex gap-x-4 gap-y-5 flex-wrap justify-center 
-            mb-10">
-                {
-                    productDatas
-                    .map((data, index)=>(
-                        <div className="w-full sm:w-[47%] md:w-[33%]
-                        lg:w-[30%] xl:w-1/4 flex justify-center product opacity-0"
-                        key={index}>
-                            <div className="flex flex-col gap-3">
-                                <div className="relative 
-                                rounded-[25px] group">
-
-                                    <ProductImgBox 
-                                    imgSrc={data.imgSrc}
-                                    productTitle={data.title}/>
-
-                                    {data.promo &&
-                                    <div className="z-10 text-[13px] absolute top-3 left-3 bg-white p-2 
-                                    rounded-full uppercase font-medium ">
-                                        get off 20% 
-                                    </div>}
-
-                                    <div className="absolute top-0 w-full h-full z-5 
-                                    bg-[rgba(0,0,0,0.4)] rounded-[25px] hidden group-hover:block 
-                                    group-hover:scale-105">
-                                    </div>
-
-                                    <div className="w-full z-10 absolute bottom-2
-                                    transition-all duration-500 opacity-0 group-hover:opacity-100">
-                                        <div className="w-full flex justify-between gap-2 px-3
-                                        flex-wrap">
-
-                                            <button className="flex flex-wrap gap-2 items-center 
-                                            py-3 px-3 bg-white rounded-full justify-center grow
-                                            ">
-                                                <img src={addToCartSrc} alt="Add to cart" 
-                                                className=""/>
-                                                <span className="font-bold">Add to cart</span>
-                                            </button>
-
-                                            <button className="border-2 px-3 py-2 rounded-full 
-                                            text-white font-bold grow text-center">
-                                                Buy now
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <h4 className="font-medium uppercase
-                                    self-start text-xl sm:text-2xl">
-                                        {data.title}
-                                    </h4>
-                                    <p className="text-gray-500 text-xl sm:text-2xl font-bold">
-                                        {data.price}
-                                    </p>
-                                </div>
+            {
+                dataState.dataIsLoading ?
+                <div className="w-full h-[400px] bg-slate-300 rounded-xl animate-pulse ">
+                </div> :
+                <>
+                    <div className="flex gap-x-4 gap-y-5 flex-wrap justify-center 
+                    mb-10">
+                        {productTypes.length > 0 &&
+                        currentType
+                        ?.datas
+                        ?.slice(0, currentEndIndex)
+                        .map((data, index)=>(
+                            <div className="w-full sm:w-[47%] md:w-[33%]
+                            lg:w-[30%] xl:w-1/4 flex justify-center product opacity-0"
+                            key={index}>
+                                <FullProductBox
+                                title={data.node.title}
+                                price={data.node.priceRange.minVariantPrice.amount}
+                                promo={false}
+                                imgUrl={data.node.featuredImage.url}/>
                             </div>
-                        </div>
-                    ))
-                }
-            </div>
-
-            <div className="flex justify-center">
-                <a href="#" className="border-2 border-black px-8 
-                py-3 rounded-full capitalize hover:bg-black hover:text-white
-                ">
-                    View more
-                </a>
-            </div>
+                        ))}
+                    </div>
+                    
+                    {currentType?.datas?.length > currentEndIndex &&
+                    <div className="flex justify-center">
+                        <button className="border-2 border-black px-8 
+                        py-3 rounded-full capitalize hover:bg-black hover:text-white
+                        " onClick={onViewMoreBtnClick}>
+                            View more
+                        </button>
+                    </div> }
+                </>
+            }
         </div>
         </>
     )
