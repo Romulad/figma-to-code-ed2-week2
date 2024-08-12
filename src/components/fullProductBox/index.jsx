@@ -1,11 +1,44 @@
+import { useContext, useEffect, useState } from "react";
+
 import addToCartSrc from "@assets/addToCart.svg";
+import minusIcon from "@assets/minusIcon.svg";
 
 import {
     ProductImgBox
 } from "@components";
+import { CartContext } from "@/context";
 
 
-export default function FullProductBox({title, price, promo, imgUrl}){
+export default function FullProductBox({
+    title, price, promo, imgUrl, data
+}){
+    const cart = useContext(CartContext);
+    const [productIsInCart, setProductIsInCart] = useState(false);
+
+    useEffect(()=>{
+        const cartDatas = cart.cartDatas;
+        const product = cartDatas?.find((product)=>(product.data.id === data.id));
+        if(product){
+            setProductIsInCart(true)
+        }else{
+            setProductIsInCart(false)
+        }
+    }, [cart])
+
+    function onAddToCartBtnClick(){
+        const cartDatas = cart.cartDatas;
+        const product = cartDatas.find((product)=>(product.data.id === data.id));
+        if(!product){
+            cart.setCartDatas([...cart.cartDatas, {count: 1, data}]);
+        }
+    }
+
+    function onRemoveFromCartBtnClick(){
+        const cartDatas = cart.cartDatas;
+        const newCart = cartDatas.filter((product)=>(product.data.id !== data.id));
+        cart.setCartDatas(newCart);
+    }
+
     return(
         <div className="flex flex-col gap-3">
             <div className="relative 
@@ -30,17 +63,27 @@ export default function FullProductBox({title, price, promo, imgUrl}){
                 transition-all duration-500 opacity-0 group-hover:opacity-100">
                     <div className="w-full flex justify-between gap-2 px-3
                     flex-wrap">
+                        {!productIsInCart ? 
+                        <button className="flex flex-wrap gap-2 items-center 
+                        py-3 px-3 bg-white rounded-full justify-center grow
+                        scale-100 hover:scale-105 transition-all duration-500"
+                        onClick={onAddToCartBtnClick}>
+                            <img src={addToCartSrc} alt="Add to cart" 
+                            />
+                            <span className="font-bold">Add to cart</span>
+                        </button> :
 
                         <button className="flex flex-wrap gap-2 items-center 
                         py-3 px-3 bg-white rounded-full justify-center grow
-                        ">
-                            <img src={addToCartSrc} alt="Add to cart" 
-                            className=""/>
-                            <span className="font-bold">Add to cart</span>
-                        </button>
+                        scale-100 hover:scale-105 transition-all duration-500"
+                        onClick={onRemoveFromCartBtnClick}>
+                            <img src={minusIcon} alt="Remove from cart" 
+                            className="size-6"/> 
+                            <span className="font-bold">Remove from cart</span>
+                        </button>}
 
                         <button className="border-2 px-3 py-2 rounded-full 
-                        text-white font-bold grow text-center">
+                        text-white font-bold grow text-center hover:bg-black hover:border-0">
                             Buy now
                         </button>
                     </div>

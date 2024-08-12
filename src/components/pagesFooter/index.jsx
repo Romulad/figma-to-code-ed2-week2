@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 import { boxClasses } from "@lib/classes";
 import {
@@ -79,10 +79,10 @@ export default function PagesFooter(){
                     .map((data, index)=>(
                     <li className="text-white opacity-60 text-sm group" 
                     key={index.toString() + data.name.toString()}>
-                        <a href={data.path} className="group-hover:underline" 
+                        <Link to="" className="group-hover:underline" 
                         target={`${remote ? "_blank" : "_parent"}`}>
                             {data.name}
-                        </a>
+                        </Link>
                     </li>
                     ))}
                 </ul>
@@ -141,7 +141,7 @@ export default function PagesFooter(){
                 <div className="text-center text-sm text-white opacity-60 font-medium">
                     <p>
                        © BALLAMAS 2024 by 
-                        <a href="/" className="underline"> oluwatobi</a>
+                        <Link to="/" className="underline"> oluwatobi</Link>
                     </p>
                 </div>  
             </div>

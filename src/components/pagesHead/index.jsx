@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { boxClasses } from "@lib/classes";
 import accountIconSrc from "@assets/accountIcon.svg";
@@ -15,28 +16,28 @@ export default function PagesHead(){
   const [navMenuIsOpen, setNavMenuIsOpen] = useState(false);
   
   const leftNavLinks = [
-    {name:'Men', path:"/men"}, 
-    {name:'Women', path:"/women"}, 
-    {name:'Kids', path:"/kids"}, 
-    {name:'Collection', path:"/collection"}
+    {name:'Men', path:""}, 
+    {name:'Women', path:""}, 
+    {name:'Kids', path:""}, 
+    {name:'Collection', path:""}
   ].map((navData, index)=>(
     <li className="group" key={index}>
-      <a href={navData.path} className="group-hover:underline">
+      <Link to={navData.path} className="group-hover:underline">
         {navData.name}
-      </a>
+      </Link>
     </li>
   ))
 
   const rightNavLinks = [
-    {name:'Shop', path:"/shop"}, 
-    {name:'About Us', path:"/about-us"}, 
-    {name:'Account', path:"/account", iconSrc: accountIconSrc}, 
+    {name:'Shop', path:""}, 
+    {name:'About Us', path:""}, 
+    {name:'Account', path:"", iconSrc: accountIconSrc}, 
   ].map((navData, index)=>(
     <li className="group flex gap-2 items-center" key={index}>
       {navData.iconSrc && <img src={navData.iconSrc} alt={navData.name} />}
-      <a href={navData.path} className="group-hover:underline">
+      <Link to={navData.path} className="group-hover:underline">
         {navData.name}
-      </a>
+      </Link>
     </li>
   ))
 
@@ -64,9 +65,7 @@ export default function PagesHead(){
             </button>
 
             {/* logo */}
-            <a href="/">
-              <Logo />
-            </a>
+            <Logo />
 
             {/* right side nav links on large screens*/}
             <ul className="hidden lg:flex gap-4 items-center">
@@ -100,15 +99,15 @@ export default function PagesHead(){
               {rightNavLinks}
 
               <li className="group flex gap-2 items-center">
-                <a href="/faq" className="group-hover:underline">
+                <Link to="" className="group-hover:underline">
                   FAQ
-                </a>
+                </Link>
               </li>
 
               <li className="group flex gap-2 items-center">
-                <a href="/contact-us" className="group-hover:underline">
+                <Link to="" className="group-hover:underline">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
         </nav>

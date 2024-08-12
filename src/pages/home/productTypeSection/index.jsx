@@ -3,8 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import {
     FullProductBox,
 } from "@components";
-import { 
-    isVisibleByC 
+import {
+    isVisibleByC
 } from "@lib/utils.js";
 import { AppContext } from "@/context";
 import { collectionKey } from "@api/constant";
@@ -69,7 +69,7 @@ export default function ProductTypeSection(){
         function smoothDisplay(ev){
             document.querySelectorAll('.product')
             .forEach(element => {
-                if(isVisibleByC(element, true, false)){
+                if(isVisibleByC(element, false, false)){
                     element.classList.add("animate-fadInUp")
                 }
             });
@@ -121,6 +121,7 @@ export default function ProductTypeSection(){
                             lg:w-[30%] xl:w-1/4 flex justify-center product opacity-0"
                             key={index}>
                                 <FullProductBox
+                                data={data.node}
                                 title={data.node.title}
                                 price={data.node.priceRange.minVariantPrice.amount}
                                 promo={false}
