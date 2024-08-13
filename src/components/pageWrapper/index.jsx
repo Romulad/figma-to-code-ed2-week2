@@ -38,9 +38,9 @@ export default function PageWrapper(Page, pageDatas={}){
 
         useEffect(()=>{
             pageDatas.title && (document.title = pageDatas.title);
-            // setTimeout(() => {
-            //     window.scrollTo({top:0, behavior: "smooth"});
-            // }, 100);
+            setTimeout(() => {
+                window.scrollTo({top:0, behavior: "smooth"});
+            }, 100);
 
             // Main datas used in the app
             setDataIsLoading(true);
