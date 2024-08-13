@@ -10,7 +10,7 @@ import { getSubTotal } from "@lib/utils";
 import {
     PageWrapper,
     OrderSummuryInfo,
-    LabelInput
+    LabelInput,
 } from "@components";
 
 const title = "Ballamas - Checkout"
@@ -26,7 +26,7 @@ export function Checkout(){
     }
 
     const orderCol = (
-        <div className="w-[55%]">
+        <div className="w-full lg:w-[55%] lg:max-w-[600px]">
             <div>
                 <h2 className="text-md font-semibold">
                     Your Order
@@ -78,7 +78,7 @@ export function Checkout(){
 
             <div className="mt-8">
                 <form action="" onSubmit={(ev)=>{ev.preventDefault()}}
-                className="flex gap-3 items-end ">
+                className="flex gap-3 items-end max-w-[450px]">
                     <div className="grow w-auto">
                         <LabelInput 
                         name="discount"
@@ -110,16 +110,13 @@ export function Checkout(){
                 <h4 className="font-semibold mb-3">
                     Shipping method
                 </h4>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-3">
                     <div className="flex border-2 rounded-xl p-4 
                     justify-between items-center">
-                        
-                        {/* Todo */}
-                        <div className="flex items-center ">
-                            <input type="checkbox" 
-                            name="" id="" 
-                            className="rounded-full bg-black size-5"/>
-                        </div>
+                      
+
+                        <input type="radio" name="" id="" 
+                        className="bg-black size-4"/>
 
                         <div>
                             <span>
@@ -134,7 +131,7 @@ export function Checkout(){
     )
 
     const paymentCol = (
-        <form className="w-[41%]"
+        <form className="w-full lg:w-[41%]"
         onSubmit={(ev)=>{ev.preventDefault();}}>
             <div>
                 <h2 className="text-md font-semibold">
@@ -165,7 +162,8 @@ export function Checkout(){
                         {name: "postal_code", label: "Postal code", placeholder: "Enter your postal code"}],
                     ]
                     .map((fields, index)=>(
-                        <div className="flex gap-3 *:w-1/2" key={index}>
+                        <div className="flex flex-wrap gap-3 *:w-full *:min-[460px]:w-[48%] " 
+                        key={index}>
                             {fields
                             .map((field)=>(
                                 <div key={field.name}>
@@ -187,7 +185,7 @@ export function Checkout(){
                     Select payment method
                 </h4>
 
-                <div className="flex gap-2 *:w-1/2 mt-3">
+                <div className="flex flex-wrap gap-3 *:w-full *:min-[460px]:w-[48%] mt-3">
                     <button className="border border-black 
                     focus:border-2 p-4 rounded-xl flex flex-col gap-3
                     items-start">
@@ -226,7 +224,7 @@ export function Checkout(){
                             />
                         </div>
                     </div>
-                    <div className="flex gap-3 *:w-1/2">
+                    <div className="flex flex-wrap gap-3 *:w-full *:min-[460px]:w-[48%]">
                         <LabelInput 
                         name="expiration_date"
                         placeholder="Expiration date (MM/YY)"/>
@@ -248,7 +246,8 @@ export function Checkout(){
             <div className="mt-6 flex justify-center 
             ">
                 <button className="flex items-center justify-center bg-black 
-                text-white gap-2 rounded-full py-3 w-full max-w-[400px]"
+                text-white gap-2 rounded-full py-3 w-full max-w-[400px] disabled:opacity-70"
+                disabled={cart.cartDatas.length <= 0}
                 type="submit">
                     <span>
                         Pay ${getSubTotal(cart).toFixed(2)}
@@ -268,7 +267,7 @@ export function Checkout(){
         sm:text-2xl text-xl mb-8">
             Checkout
         </h1>
-        <div className="flex gap-10 items-start flex-wrap">
+        <div className="flex gap-y-16 gap-x-5 items-start justify-between flex-wrap lg:flex-nowrap">
             {orderCol}
             {paymentCol}
         </div>

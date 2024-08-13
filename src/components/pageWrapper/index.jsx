@@ -73,7 +73,7 @@ export default function PageWrapper(Page, pageDatas={}){
                         </main>
                         <PagesFooter />
 
-                        <div className="fixed bottom-5 right-5">
+                        <div className="fixed bottom-10 right-5">
                             <Link to={"/cart"}
                             className="bg-slate-200 shadow-xl rounded-full 
                             p-3 flex gap-1 items-center relative">

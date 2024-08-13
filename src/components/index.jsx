@@ -15,5 +15,5 @@ export {
     ProductImgBox,
     FullProductBox,
     OrderSummuryInfo,
-    LabelInput
+    LabelInput,
 }
