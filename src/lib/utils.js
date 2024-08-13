@@ -41,3 +41,13 @@ export const isVisibleByC = (element, exact=false, onBottom=true) =>{
 export const getDatasFromCollection = (collections) => {
     return collections?.data.collection.products.edges
 }
+
+export function getSubTotal(cart){
+        let total = 0;
+        cart.cartDatas.map((product)=>{
+            total += parseInt(
+                product.data.priceRange.minVariantPrice.amount
+            ) * product.count
+        })
+        return total;
+    }

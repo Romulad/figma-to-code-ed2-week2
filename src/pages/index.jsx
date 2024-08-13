@@ -1,7 +1,5 @@
-import HomePage from "@pages/home";
-import CartPage from "@pages/cart";
+import { lazy } from "react";
 
-export {
-    HomePage,
-    CartPage
-}
+export const HomePage = lazy(()=> import('@pages/home'));
+export const CartPage = lazy(()=> import('@pages/cart'));
+export const CheckoutPage = lazy(()=> import('@pages/checkout'));

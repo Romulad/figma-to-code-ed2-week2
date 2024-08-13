@@ -1,17 +1,21 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { CartContext } from "@/context";
 import {
-    PageWrapper
+    PageWrapper,
+    OrderSummuryInfo
 } from "@components";
 import trashIcon from "@assets/trashIcon.svg";
 import minusIcon from "@assets/minusIcon.svg";
 import plusIcon from "@assets/plusIcon.svg";
+import { getSubTotal } from "@lib/utils";
 
 const title = "Ballamas - Cart"
 
 export function CartPage(){
     const cart = useContext(CartContext)
+    const navigate = useNavigate();
 
     function onClearCartClick(){
         cart.setCartDatas([]);
@@ -50,20 +54,12 @@ export function CartPage(){
         ));
         cart.setCartDatas(newCartDatas);
     }
-
-    function getSubTotal(){
-        let total = 0;
-        cart.cartDatas.map((product)=>{
-            total += parseInt(product.data.priceRange.minVariantPrice.amount) * product.count
-        })
-        return total;
-    }
     
     return(
         <div className="flex gap-10 items-start flex-wrap">
 
             {/* Part one */}
-            <div className="w-full min-[900px]:grow min-[900px]:w-auto">
+            <div className="w-full md:grow md:w-auto">
                 <div className="flex justify-between items-center gap-2 flex-wrap">
                     <h1 className="font-chillax font-semibold 
                     sm:text-2xl text-xl">
@@ -74,12 +70,12 @@ export function CartPage(){
                     onClick={onClearCartClick}>
                         <img src={trashIcon} alt="Trash icon" 
                         title="Clear cart" className="size-4"/>
-                        <span>Clear Cart</span>
+                        <span className="text-gray-600">Clear Cart</span>
                     </button>
                 </div>
 
                 <div className="mt-8 overflow-auto w-full">
-                    <div className=" sm:w-full text-no-wrap">
+                    <div className="w-[640px] sm:w-full text-no-wrap">
                         <table className="table min-w-full">
                             <thead>
                             <tr className="border-b ">
@@ -130,7 +126,7 @@ export function CartPage(){
 
                                         <td className="text-start py-5 border-b">
                                             <div className="flex gap-2">
-                                                <div className="flex bg-slate-100 p-2 w-32 sm:w-36 rounded-full justify-between">
+                                                <div className="flex bg-slate-100 p-2 w-24 lg:w-36 rounded-full justify-between">
                                                     <button onClick={()=>{decreaseCount(product)}}>
                                                         <img src={minusIcon} alt="Minus" className="size-5"
                                                         title="Decrease product count"/>
@@ -170,41 +166,19 @@ export function CartPage(){
             </div>
 
             {/* Summuray part */}
-            <div className="border rounded-xl p-6 w-full min-[900px]:w-[300px]">
+            <div className="border rounded-xl p-6 w-full md:w-[300px]">
                 <div>
                     <span className="font-semibold text-lg">
                         Order summary
                     </span>
                 </div>
 
-                <div className="pb-3 border-b text-gray-600 mt-6 flex flex-col gap-2">
-                    <div className="flex justify-between">
-                        <span>
-                            Subtotal
-                        </span>
-                        <span>
-                            ${getSubTotal().toFixed(2)}
-                        </span>
-                    </div>
-                    
-                    <div className="flex justify-between">
-                        <span>
-                            Discount
-                        </span>
-                        <span>
-                            $0
-                        </span>
-                    </div>
-                </div>
+                <OrderSummuryInfo 
+                subTotal={getSubTotal(cart).toFixed(2)}/>
 
-                <div className="mt-4 flex justify-between">
-                    <span className="font-semibold">Order total</span>
-                    <span className="font-bold text-lg">
-                        ${getSubTotal().toFixed(2)}
-                    </span>
-                </div>
-
-                <button className="w-full mt-3 rounded-full py-3 bg-black text-white">
+                <button className="w-full mt-3 rounded-full py-3 bg-black text-white
+                disabled:opacity-70" disabled={cart.cartDatas.length <= 0}
+                onClick={()=>{navigate("/checkout")}}>
                     Checkout now
                 </button>
             </div>

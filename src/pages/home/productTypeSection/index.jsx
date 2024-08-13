@@ -137,7 +137,7 @@ export default function ProductTypeSection(){
                                 data={data.node}
                                 title={data.node.title}
                                 price={data.node.priceRange.minVariantPrice.amount}
-                                promo={false}
+                                promo={index%2 === 0}
                                 imgUrl={data.node.featuredImage.url}/>
                             </div>
                         ))}

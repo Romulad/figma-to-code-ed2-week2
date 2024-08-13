@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { 
   HomePage,
-  CartPage
+  CartPage,
+  CheckoutPage
 } from "@pages";
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
         <Route path="/home" element={<HomePage />}
         />
         <Route path="/cart" element={<CartPage />}
+        />
+        <Route path="/checkout" element={<CheckoutPage />}
         />
         <Route path="*" element={<></>}
         />

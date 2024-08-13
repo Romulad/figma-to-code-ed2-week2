@@ -4,6 +4,8 @@ import Logo from "@components/logo/";
 import PageWrapper from "@components/pageWrapper/";
 import ProductImgBox from "@components/productImgBox/";
 import FullProductBox from "@components/fullProductBox/";
+import OrderSummuryInfo from "@components/orderSummuryInfo";
+import LabelInput from "@components/labelInput/";
 
 export {
     PagesHead,
@@ -11,5 +13,7 @@ export {
     Logo,
     PageWrapper,
     ProductImgBox,
-    FullProductBox
+    FullProductBox,
+    OrderSummuryInfo,
+    LabelInput
 }

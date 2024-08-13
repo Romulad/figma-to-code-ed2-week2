@@ -33,11 +33,14 @@ export default function PageWrapper(Page, pageDatas={}){
 
         const cartContextDatas = {
             cartDatas, 
-            setCartDatas: addItemToCart
+            setCartDatas: updateCartDatas
         }
 
         useEffect(()=>{
             pageDatas.title && (document.title = pageDatas.title);
+            // setTimeout(() => {
+            //     window.scrollTo({top:0, behavior: "smooth"});
+            // }, 100);
 
             // Main datas used in the app
             setDataIsLoading(true);
@@ -54,8 +57,8 @@ export default function PageWrapper(Page, pageDatas={}){
             }
         }, [])
 
-        function addItemToCart(cartDatas){
-            // add item to cart and cache the cart datas
+        function updateCartDatas(cartDatas){
+            // set and cache cart datas
             setCartDatas(cartDatas);
             localStorage.setItem("cart", JSON.stringify(cartDatas));
         }
@@ -63,17 +66,17 @@ export default function PageWrapper(Page, pageDatas={}){
         return(
             <AppContext.Provider value={contextState}>
                 <CartContext.Provider value={cartContextDatas}>
-                    <div className="max-w-[1520px] mx-auto">
+                    <div className="max-w-[1536px] mx-auto">
                         <PagesHead />
                         <main className={boxClasses}>
                             <Page {...props}/>
                         </main>
                         <PagesFooter />
 
-                        <div className="fixed bottom-10 right-10">
+                        <div className="fixed bottom-5 right-5">
                             <Link to={"/cart"}
                             className="bg-slate-200 shadow-xl rounded-full 
-                            px-3 py-2 flex gap-1 items-center relative">
+                            p-3 flex gap-1 items-center relative">
                                 <div>
                                     <img src={cartIcon} alt="View Cart" 
                                     className="size-6"

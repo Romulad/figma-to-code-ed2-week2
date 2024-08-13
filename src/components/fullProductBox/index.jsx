@@ -1,18 +1,20 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import addToCartSrc from "@assets/addToCart.svg";
 import minusIcon from "@assets/minusIcon.svg";
-
 import {
     ProductImgBox
 } from "@components";
 import { CartContext } from "@/context";
 
 
+
 export default function FullProductBox({
     title, price, promo, imgUrl, data
 }){
     const cart = useContext(CartContext);
+    const navigate = useNavigate();
     const [productIsInCart, setProductIsInCart] = useState(false);
 
     useEffect(()=>{
@@ -37,6 +39,11 @@ export default function FullProductBox({
         const cartDatas = cart.cartDatas;
         const newCart = cartDatas.filter((product)=>(product.data.id !== data.id));
         cart.setCartDatas(newCart);
+    }
+
+    function onBuyNowBtnClicK(){
+        onAddToCartBtnClick();
+        navigate("/checkout");
     }
 
     return(
@@ -83,7 +90,8 @@ export default function FullProductBox({
                         </button>}
 
                         <button className="border-2 px-3 py-2 rounded-full 
-                        text-white font-bold grow text-center hover:bg-black hover:border-0">
+                        text-white font-bold grow text-center hover:bg-black hover:border-0"
+                        onClick={onBuyNowBtnClicK}>
                             Buy now
                         </button>
                     </div>
