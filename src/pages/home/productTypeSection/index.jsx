@@ -18,6 +18,7 @@ export default function ProductTypeSection(){
     const [productTypes, setProductTypes] = useState([]);
     const [currentType, setCurrentType] = useState({});
     const [currentEndIndex, setCurrentEndIndex] = useState(6);
+    const [changingType, setChangingType] = useState(false);
 
     useEffect(()=>{
         if(Object.keys(collectionDatas).length > 0 ){
@@ -70,7 +71,8 @@ export default function ProductTypeSection(){
             document.querySelectorAll('.product')
             .forEach(element => {
                 if(isVisibleByC(element, false, false)){
-                    element.classList.add("animate-fadInUp")
+                    element.classList.add("animate-fadInUp");
+                   
                 }
             });
         }
@@ -85,6 +87,17 @@ export default function ProductTypeSection(){
         }
     }
 
+    function onChangeTypeBtnClick(data){
+        setCurrentType([]);
+        setChangingType(true);
+        setTimeout(() => {
+            setCurrentType(data);
+            setCurrentEndIndex(6);
+            setChangingType(false);
+            window.scrollTo(0, window.scrollY + 10);
+        }, 100);
+    }
+
     return(
         <>
         <div className="mb-16">
@@ -97,7 +110,7 @@ export default function ProductTypeSection(){
                         border border-black p-3 rounded-full text-black
                         group-hover:bg-black group-hover:text-white 
                         ${currentType.type === data.type && " bg-black text-white"}`}
-                        onClick={()=>{setCurrentType(data), setCurrentEndIndex(6)}}>
+                        onClick={()=>{onChangeTypeBtnClick(data)}}>
                             <span>{data.type}</span>
                             <span>{data.datas.length}</span>
                         </button>
@@ -106,7 +119,7 @@ export default function ProductTypeSection(){
             </ul>
 
             {
-                dataState.dataIsLoading ?
+                dataState.dataIsLoading || changingType ?
                 <div className="w-full h-[400px] bg-slate-300 rounded-xl animate-pulse ">
                 </div> :
                 <>

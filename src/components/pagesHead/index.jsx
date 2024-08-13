@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { boxClasses } from "@lib/classes";
@@ -11,9 +11,11 @@ import cartSrc from "@assets/cart.svg";
 import {
   Logo
 } from "@components";
+import { CartContext } from "@/context";
 
 export default function PagesHead(){
   const [navMenuIsOpen, setNavMenuIsOpen] = useState(false);
+  const cart = useContext(CartContext)
   
   const leftNavLinks = [
     {name:'Men', path:""}, 
@@ -70,9 +72,9 @@ export default function PagesHead(){
             {/* right side nav links on large screens*/}
             <ul className="hidden lg:flex gap-4 items-center">
               {rightNavLinks}
-              <button>
-                Cart(0)
-              </button>
+              <Link to={"/cart"}>
+                Cart({cart.cartDatas.length})
+              </Link>
               <button>
                 <img src={searchIconSrc} alt="Search" />
               </button>

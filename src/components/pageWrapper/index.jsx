@@ -33,7 +33,7 @@ export default function PageWrapper(Page, pageDatas={}){
 
         const cartContextDatas = {
             cartDatas, 
-            setCartDatas
+            setCartDatas: addItemToCart
         }
 
         useEffect(()=>{
@@ -47,6 +47,19 @@ export default function PageWrapper(Page, pageDatas={}){
             });
         }, [])
 
+        useEffect(()=>{
+            const cartDatas = localStorage.getItem('cart');
+            if(cartDatas){
+                setCartDatas(JSON.parse(cartDatas));
+            }
+        }, [])
+
+        function addItemToCart(cartDatas){
+            // add item to cart and cache the cart datas
+            setCartDatas(cartDatas);
+            localStorage.setItem("cart", JSON.stringify(cartDatas));
+        }
+
         return(
             <AppContext.Provider value={contextState}>
                 <CartContext.Provider value={cartContextDatas}>
@@ -58,7 +71,7 @@ export default function PageWrapper(Page, pageDatas={}){
                         <PagesFooter />
 
                         <div className="fixed bottom-10 right-10">
-                            <Link 
+                            <Link to={"/cart"}
                             className="bg-slate-200 shadow-xl rounded-full 
                             px-3 py-2 flex gap-1 items-center relative">
                                 <div>
