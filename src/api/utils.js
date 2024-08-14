@@ -45,6 +45,8 @@ export const getCollectionQuery = (colectionId) => {
 export const getRecommendationsQuery = (productId) => {
     return `query={productRecommendations(productId: "${productId}") {
         title
+        id
+        description
         featuredImage {
             altText
             url
