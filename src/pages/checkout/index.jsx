@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import cardIcon from "@assets/creditCardIcon.svg";
 import banckIcon from "@assets/bankIcon.svg";
@@ -16,6 +16,7 @@ import {
 const title = "Ballamas - Checkout"
 
 export function Checkout(){
+    const navigate = useNavigate();
     const cart = useContext(CartContext);
 
     function getProductTotal(product){
@@ -23,6 +24,12 @@ export function Checkout(){
             product.count * 
             parseInt(product.data.priceRange.minVariantPrice.amount)
         ).toFixed(2)
+    }
+
+    function onMakePayementBtnClick(ev){
+        ev.preventDefault();
+        cart.setCartDatas([]);
+        navigate("/payment")
     }
 
     const orderCol = (
@@ -248,7 +255,7 @@ export function Checkout(){
                 <button className="flex items-center justify-center bg-black 
                 text-white gap-2 rounded-full py-3 w-full max-w-[400px] disabled:opacity-70"
                 disabled={cart.cartDatas.length <= 0}
-                type="submit">
+                type="submit" onClick={onMakePayementBtnClick}>
                     <span>
                         Pay ${getSubTotal(cart).toFixed(2)}
                     </span>
