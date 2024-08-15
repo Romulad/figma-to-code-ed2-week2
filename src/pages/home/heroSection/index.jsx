@@ -23,7 +23,7 @@ export default function HeroSection(){
     return(
         <>
         <div className="hero-section-bg h-[400px] bg-no-repeat bg-center 
-        bg-cover rounded-3xl bg-slate-50 flex flex-col gap-5 text-center items-center tex-white 
+        bg-cover rounded-3xl bg-black flex flex-col gap-5 text-center items-center text-white 
         justify-center px-3 sm:px-5 mb-16 max-[279px]:overflow-auto no-scrollbar">
             
             <div className="flex gap-4 items-center text-sm">
