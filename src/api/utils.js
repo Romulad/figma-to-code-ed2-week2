@@ -59,3 +59,51 @@ export const getRecommendationsQuery = (productId) => {
         }
     }}`
 }
+
+export const getProductQuery = (productId) => {
+    return `query={product(id: ${productId}) {
+        id
+        title
+        description
+        priceRange{
+            minVariantPrice{
+                amount
+            }
+        }
+        featuredImage {
+            id
+            url
+        }
+        variants(first: 50) {
+        nodes {
+            id
+            title
+            price {
+                amount
+            }
+            image {
+                url
+            }
+            selectedOptions {
+                name
+                value
+            }
+            product {
+            id
+            title
+            description
+            priceRange{
+                minVariantPrice{
+                    amount
+                }
+            }
+            featuredImage {
+                id
+                url
+            }
+            }
+        }
+        }
+    }
+    }
+`}

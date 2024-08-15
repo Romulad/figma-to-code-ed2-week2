@@ -46,14 +46,22 @@ export default function FullProductBox({
         navigate("/checkout");
     }
 
+    function onProductClick(){
+        navigate(`/product/detail?productId=${data.id}`)
+    }
+
     return(
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 hover:cursor-pointer"
+        >
             <div className="relative 
             rounded-[25px] group">
-
-                <ProductImgBox 
-                imgSrc={imgUrl}
-                productTitle={title}/>
+                
+                <button className="h-full w-full" 
+                onClick={onProductClick}>
+                    <ProductImgBox 
+                    imgSrc={imgUrl}
+                    productTitle={title}/>
+                </button>
 
                 {promo &&
                 <div className="z-10 text-[13px] absolute top-3 left-3 bg-white p-2 
@@ -63,7 +71,7 @@ export default function FullProductBox({
 
                 <div className="absolute top-0 w-full h-full z-5 
                 bg-[rgba(0,0,0,0.4)] rounded-[25px] hidden group-hover:block 
-                group-hover:scale-105">
+                group-hover:scale-105" onClick={onProductClick}>
                 </div>
 
                 <div className="w-full z-10 absolute bottom-2

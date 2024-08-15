@@ -127,7 +127,7 @@ export function Checkout(){
                     .map((shippingMethod)=>(
                         <label htmlFor={shippingMethod.value} key={shippingMethod.value}
                         className="flex border-2 rounded-xl p-3 
-                        justify-between items-center text-sm">
+                        justify-between items-center text-sm hover:cursor-pointer">
                             <div className="flex gap-3 items-center">
                                 <div>
                                     <input type="radio" name="shipping" id={shippingMethod.value}

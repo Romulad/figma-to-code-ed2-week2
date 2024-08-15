@@ -4,7 +4,8 @@ import {
   HomePage,
   CartPage,
   CheckoutPage,
-  PaymentPage
+  PaymentPage,
+  ProductDeatilPage
 } from "@pages";
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
         <Route path="/checkout" element={<CheckoutPage />}
         />
         <Route path="/payment" element={<PaymentPage />}
+        />
+        <Route path="/product/detail" element={<ProductDeatilPage />}
         />
         <Route path="*" element={<></>}
         />

@@ -6,7 +6,8 @@ import {
 } from "@api/constant";
 import { 
     getCollectionQuery ,
-    getRecommendationsQuery
+    getRecommendationsQuery,
+    getProductQuery
 } from "@api/utils";
 
 
@@ -58,6 +59,17 @@ export const fetchProductRecommendations = async (productId) => {
             return [];
         }
     }
-    
 }
 
+export const fetchProduct = async (productId) => {
+    const endPoint = `${baseRoute}${getProductQuery(productId)}`
+    const resp = await fetch(endPoint);
+
+    if(resp.ok){
+        const datas = await resp.json();
+        return datas;
+    }else{
+        // manage error based on the status code;
+        return {};
+    }
+}
