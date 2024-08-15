@@ -14,7 +14,7 @@ export function Payment(){
         setTimeout(() => {
             successRef.current.classList.remove('scale-0')
             successRef.current.classList.add('scale-100')
-        }, 800);
+        }, 400);
     }, [])
     
     return(

@@ -117,21 +117,43 @@ export function Checkout(){
                 <h4 className="font-semibold mb-3">
                     Shipping method
                 </h4>
+
                 <div className="flex flex-col gap-3">
-                    <div className="flex border-2 rounded-xl p-4 
-                    justify-between items-center">
-                      
+                    {[
+                        {value: "free", method: "Free shipping", expected: "7-30 business days", price: "0"},
+                        {value: "regular", method: "Regular shipping", expected: "3-14 business days", price: "7,50"},
+                        {value: "express", method: "Express shipping", expected: "1-3 business days", price: "22,50"}
+                    ]
+                    .map((shippingMethod)=>(
+                        <label htmlFor={shippingMethod.value} key={shippingMethod.value}
+                        className="flex border-2 rounded-xl p-3 
+                        justify-between items-center text-sm">
+                            <div className="flex gap-3 items-center">
+                                <div>
+                                    <input type="radio" name="shipping" id={shippingMethod.value}
+                                    value={shippingMethod.value} 
+                                    className="bg-black size-5"/>
+                                </div>
 
-                        <input type="radio" name="" id="" 
-                        className="bg-black size-4"/>
+                                <div className="flex flex-col gap-1">
+                                <span className="font-medium">
+                                        {shippingMethod.method}                             
+                                    </span> 
+                                    <span className="text-gray-600">
+                                        {shippingMethod.expected}
+                                    </span>
+                                </div>
+                            </div>
 
-                        <div>
-                            <span>
-                                $0
-                            </span>
-                        </div>
-                    </div>
+                            <div>
+                                <span className="text-md ">
+                                    ${shippingMethod.price}
+                                </span>
+                            </div>
+                        </label>
+                    ))}
                 </div>
+
             </div>
 
         </div>
@@ -195,7 +217,7 @@ export function Checkout(){
                 <div className="flex flex-wrap gap-3 *:w-full *:min-[460px]:w-[48%] mt-3">
                     <button className="border border-black 
                     focus:border-2 p-4 rounded-xl flex flex-col gap-3
-                    items-start">
+                    items-start" type="button">
                         <div>
                             <img src={cardIcon} alt="Card" />
                         </div>
@@ -206,7 +228,7 @@ export function Checkout(){
 
                     <button className="border border-black 
                     focus:border-2 p-4 rounded-xl flex flex-col gap-3
-                    items-start">
+                    items-start" type="button">
                         <div>
                             <img src={banckIcon} alt="Banck" />
                         </div>

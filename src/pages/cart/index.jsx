@@ -75,7 +75,7 @@ export function CartPage(){
                 </div>
 
                 <div className="mt-8 overflow-auto w-full">
-                    <div className="w-[640px] sm:w-full text-no-wrap">
+                    <div className="min-w-[450px] min-[450px]:w-full text-no-wrap">
                         <table className="table min-w-full">
                             <thead>
                             <tr className="border-b ">
@@ -166,7 +166,7 @@ export function CartPage(){
             </div>
 
             {/* Summuray part */}
-            <div className="border rounded-xl p-6 w-full md:w-[300px]">
+            <div className="border rounded-xl p-6 w-full md:w-[300px] md:mx-auto">
                 <div>
                     <span className="font-semibold text-lg">
                         Order summary
