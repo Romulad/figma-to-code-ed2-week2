@@ -67,16 +67,19 @@ export default function PageWrapper(Page, pageDatas={}){
             <AppContext.Provider value={contextState}>
                 <CartContext.Provider value={cartContextDatas}>
                     <div className="max-w-[1536px] mx-auto">
+
                         <PagesHead />
+
                         <main className={boxClasses}>
                             <Page {...props}/>
                         </main>
+
                         <PagesFooter />
 
-                        <div className="fixed bottom-10 right-5">
+                        <div className="fixed top-1/2 -right-2 -translate-y-1/2">
                             <Link to={"/cart"}
-                            className="bg-slate-200 shadow-xl rounded-full 
-                            p-3 flex gap-1 items-center relative">
+                            className="bg-slate-300 shadow-xl rounded-lg 
+                            p-5 flex gap-1 items-center relative">
                                 <div>
                                     <img src={cartIcon} alt="View Cart" 
                                     className="size-6"

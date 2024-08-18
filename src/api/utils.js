@@ -61,7 +61,7 @@ export const getRecommendationsQuery = (productId) => {
 }
 
 export const getProductQuery = (productId) => {
-    return `query={product(id: ${productId}) {
+    return `query={product(id: "${productId}") {
         id
         title
         description

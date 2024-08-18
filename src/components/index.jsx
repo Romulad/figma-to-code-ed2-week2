@@ -6,6 +6,7 @@ import ProductImgBox from "@components/productImgBox/";
 import FullProductBox from "@components/fullProductBox/";
 import OrderSummuryInfo from "@components/orderSummuryInfo";
 import LabelInput from "@components/labelInput/";
+import SimpleSkeleton from "@components/simpleSkeleton/";
 
 export {
     PagesHead,
@@ -16,4 +17,5 @@ export {
     FullProductBox,
     OrderSummuryInfo,
     LabelInput,
+    SimpleSkeleton
 }

@@ -31,7 +31,7 @@ export const fetchProductsByCollection = async () => {
 
 export const fetchProductRecommendations = async (productId) => {
     const recommendations = JSON.parse(
-        localStorage.getItem(recommenDationKey) || ""
+        localStorage.getItem(recommenDationKey) || "{}"
     );
     if(recommendations && recommendations[productId]){
         return recommendations[productId]

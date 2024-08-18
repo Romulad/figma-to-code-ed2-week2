@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      width: {
+        "r1/2" : "48%"
+      },
       keyframes : {
         "fadInUp": {
           from : {
