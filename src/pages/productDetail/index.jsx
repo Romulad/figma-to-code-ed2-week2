@@ -1,29 +1,32 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-import { CartContext } from "@/context";
 import {
     PageWrapper,
     SimpleSkeleton,
-    FullProductBox
+    FullProductBox,
+    Button
 } from "@components";
-import { 
+import {
     fetchProduct,
     fetchProductRecommendations
 } from "@api/actions";
-
+import {
+    useCheckProductInCart,
+    useProductActions
+} from "@/hooks";
 
 const title = "Ballamas - Detail"
 
 export function ProductDeatil(){
-    const cart = useContext(CartContext)
-    const navigate = useNavigate();
-    const [searchParams, ] = useSearchParams()
+    const [addToCart, removeFCart, buyNow] = useProductActions();
+    const [searchParams, ] = useSearchParams();
     const [fetchingProduct, setFetchingProduct] = useState(false);
     const [fetchingRecomm, setFetchingRecomm] = useState(false);
     const [fetchingError, setFetchingError] = useState({product:"", recomm: ""})
     const [productData, setProductData] = useState({});
     const [recommData, setRecommData] = useState([]);
+    const productIsInCart = useCheckProductInCart(searchParams.get("productId"))
 
     useEffect(()=>{
         let productId = searchParams.get("productId");
@@ -102,10 +105,11 @@ export function ProductDeatil(){
                             Color: Green
                         </h4>
                         <div className="flex gap-2 mt-2">
-                            {["bg-green-500", "bg-blue-300", "bg-violet-500", "bg-cyan-500"]
+                            {["bg-green-500", "bg-blue-500", "bg-violet-500", "bg-cyan-500"]
                             .map((data)=>(
                                 <button key={data}
-                                className={`rounded-full p-3 ${data}`}></button>
+                                className={`rounded-full p-3 ${data} focus:px-2 focus:py-1 
+                                focus:border-4 duration-300 `}></button>
                             ))}
                         </div>
                     </div>
@@ -119,25 +123,36 @@ export function ProductDeatil(){
                             .map((data)=>(
                                 <button key={data}
                                 className={`rounded-full py-3 px-6 border border-black
-                                text-lg font-medium uppercase hover:bg-black hover:text-white`}>
+                                text-lg font-medium uppercase hover:bg-black hover:text-white
+                                duration-500 `}>
                                     {data}
                                 </button>
                             ))}
                         </div>
                     </div>
 
-                    <div className="flex gap-2 flex-wrap mt-5">
-                        <button className="border border-black bg-black text-white 
-                        py-4 w-r1/2 uppercase hover:text-black hover:bg-transparent 
-                        rounded-full">
-                            Buy now
-                        </button>
+                    <div className="flex gap-3 flex-wrap mt-5">
+                        <Button 
+                        text="Buy now"
+                        onClick={()=>{buyNow(productData)}}
+                        className="border border-black bg-black text-white 
+                        py-4 w-full sm:w-r1/2 uppercase hover:text-black hover:bg-transparent 
+                        rounded-full duration-500"/>
 
-                        <button className="border border-black 
-                        py-4 w-r1/2 uppercase hover:text-white hover:bg-black 
-                        rounded-full">
-                            Add to cart
-                        </button>
+                        {productIsInCart ?
+                        <Button 
+                        text="Remove from cart" 
+                        onClick={()=>{removeFCart(productData)}}
+                        className={`border border-black 
+                        py-4 px-3 w-full sm:w-r1/2 uppercase hover:text-white hover:bg-black 
+                        rounded-full duration-500`}
+                        /> : <Button
+                        text="Add to cart"
+                        onClick={()=>{addToCart(productData)}}
+                        className={`border border-black 
+                        py-4 px-3 w-full sm:w-r1/2 uppercase hover:text-white hover:bg-black 
+                        rounded-full duration-500`}
+                        />}
                     </div>
                 </div>
 
@@ -165,7 +180,7 @@ export function ProductDeatil(){
             <h2 className="text-xl font-chillax font-semibold">
                 You may also like
             </h2>
-            <div className="flex flex-nowrap *:shrink-0 gap-3 
+            <div className="flex flex-nowrap *:shrink-0 gap-5
             overflow-auto p-5 mt-4">
                 {recommData
                 ?.map((data, index)=>(

@@ -31,7 +31,7 @@ export default function PagesHead(){
   ))
 
   const rightNavLinks = [
-    {name:'Shop', path:""}, 
+    {name:'Shop', path:"/#shop-items"},
     {name:'About Us', path:""}, 
     {name:'Account', path:"", iconSrc: accountIconSrc}, 
   ].map((navData, index)=>(
@@ -44,7 +44,7 @@ export default function PagesHead(){
   ))
 
   return(
-      <>
+      <div className="sticky top-0 bg-white z-[900] w-full pb-1">
       <div className="bg-black py-4 px-2 w-full text-center text-white ">
         <p className="text-sm">
           Sign up and get 20% off all new arrivals collections
@@ -82,9 +82,11 @@ export default function PagesHead(){
 
             {/* Cart and search icon on small screens */}
             <ul className="flex lg:hidden gap-4 items-center">
-                <button>
+                <Link className="flex gap-1 items-center"
+                to={"/cart"}>
                   <img src={cartSrc} alt="Cart" />
-                </button>
+                  {cart.cartDatas.length}
+                </Link>
 
                 <button>
                   <img src={searchIconSrc} alt="Search" />
@@ -94,7 +96,7 @@ export default function PagesHead(){
             {/* nav menu on small screens */}
             <ul className={`z-[100] bg-white lg:hidden w-full overflow-auto absolute
             top-36 left-0 flex flex-col gap-5 items-center transition-all duration-500
-            ${navMenuIsOpen ? "h-[500px] px-2 py-6" : "h-0 px-0 py-0"} rounded-bl-xl rounded-br-xl 
+            ${navMenuIsOpen ? "h-[100vh] px-2 py-6" : "h-0 px-0 py-0"} rounded-bl-xl rounded-br-xl 
             shadow-xl`}
             >
               {leftNavLinks}
@@ -114,6 +116,6 @@ export default function PagesHead(){
             </ul>
         </nav>
       </div>
-      </>
+      </div>
     )
 }

@@ -70,7 +70,7 @@ export default function PageWrapper(Page, pageDatas={}){
 
                         <PagesHead />
 
-                        <main className={boxClasses}>
+                        <main className={boxClasses + " pt-8"}>
                             <Page {...props}/>
                         </main>
 

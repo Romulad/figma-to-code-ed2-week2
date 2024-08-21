@@ -99,7 +99,7 @@ export default function ProductTypeSection(){
     }
 
     return(
-        <>
+        <section id="shop-items">
         <div className="mb-16">
             <ul className="mb-6 flex sm:justify-center gap-3 flex-wrap">
                 {productTypes.length > 0 && 
@@ -154,6 +154,6 @@ export default function ProductTypeSection(){
                 </>
             }
         </div>
-        </>
+        </section>
     )
 }

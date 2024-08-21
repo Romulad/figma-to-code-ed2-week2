@@ -1,4 +1,3 @@
-import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import addToCartSrc from "@assets/addToCart.svg";
@@ -6,44 +5,28 @@ import minusIcon from "@assets/minusIcon.svg";
 import {
     ProductImgBox
 } from "@components";
-import { CartContext } from "@/context";
-
-
+import {
+    useCheckProductInCart,
+    useProductActions
+} from "@/hooks";
 
 export default function FullProductBox({
     title, price, promo, imgUrl, data
 }){
-    const cart = useContext(CartContext);
+    const [addToCart, removeFCart, buyNow] = useProductActions();
     const navigate = useNavigate();
-    const [productIsInCart, setProductIsInCart] = useState(false);
-
-    useEffect(()=>{
-        const cartDatas = cart.cartDatas;
-        const product = cartDatas?.find((product)=>(product.data.id === data.id));
-        if(product){
-            setProductIsInCart(true)
-        }else{
-            setProductIsInCart(false)
-        }
-    }, [cart])
+    const productIsInCart = useCheckProductInCart(data.id)
 
     function onAddToCartBtnClick(){
-        const cartDatas = cart.cartDatas;
-        const product = cartDatas.find((product)=>(product.data.id === data.id));
-        if(!product){
-            cart.setCartDatas([...cart.cartDatas, {count: 1, data}]);
-        }
+        addToCart(data);
     }
 
     function onRemoveFromCartBtnClick(){
-        const cartDatas = cart.cartDatas;
-        const newCart = cartDatas.filter((product)=>(product.data.id !== data.id));
-        cart.setCartDatas(newCart);
+        removeFCart(data)
     }
 
     function onBuyNowBtnClicK(){
-        onAddToCartBtnClick();
-        navigate("/checkout");
+        buyNow(data)
     }
 
     function onProductClick(){

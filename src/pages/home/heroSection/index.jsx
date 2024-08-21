@@ -5,6 +5,7 @@ import arrowRightTopScr from "@assets/arrowRightTop.svg";
 import { 
     writeText 
 } from "@lib/utils";
+import { Link } from "react-router-dom";
 
 export default function HeroSection(){
     const whatWeDoRef = useRef(null);
@@ -44,15 +45,15 @@ export default function HeroSection(){
                 Shop now to update your wardrobe with chic and stylish outfits.
             </p>
 
-            <div ref={actionBtnRef}
+            <a ref={actionBtnRef} href="#shop-items"
             className="flex animate-bounce scale-100 hover:scale-105 transition-all duration-700" >
-                <button className="text-black bg-white px-6 py-3 rounded-full">
+                <div className="text-black bg-white px-6 py-3 rounded-full">
                     Start shopping
-                </button>
-                <button className="bg-white p-3 rounded-full">
+                </div>
+                <div className="bg-white p-3 rounded-full">
                     <img src={arrowRightTopScr} alt={"Start shopping"} />
-                </button>
-            </div>
+                </div>
+            </a>
         </div>
         </>
     )
