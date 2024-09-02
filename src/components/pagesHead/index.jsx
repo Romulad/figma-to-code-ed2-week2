@@ -18,10 +18,10 @@ export default function PagesHead(){
   const cart = useContext(CartContext)
   
   const leftNavLinks = [
-    {name:'Men', path:""}, 
-    {name:'Women', path:""}, 
-    {name:'Kids', path:""}, 
-    {name:'Collection', path:""}
+    {name:'Men', path:"/collections/men"}, 
+    {name:'Women', path:"/collections/women"}, 
+    {name:'Unisex', path:"/collections/unisex"}, 
+    {name:'Collections', path:"/collections"}
   ].map((navData, index)=>(
     <li className="group" key={index}>
       <Link to={navData.path} className="group-hover:underline">

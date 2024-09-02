@@ -10,42 +10,42 @@ export default function PagesFooter(){
     const products = [
         {
             name: "Jacket",
-            path:"/products/jacket"
+            path:""
         },
         {
             name: "T-shirt",
-            path:"/products/t-shirt"
+            path:""
         },
         {
             name: "Shoes",
-            path:"/products/shoes"
+            path:""
         },
         {
             name: "Sunglasses",
-            path:"/products/sunglasses"
+            path:""
         }
     ]
 
     const categories = [
         {
-            name: "Man",
-            path:"/categories/man"
+            name: "Men",
+            path:"/collections/men"
         },
         {
-            name: "Woman",
-            path:"/categories/woman"
+            name: "Women",
+            path:"/collections/women"
         },
         {
-            name: "Kids",
-            path:"/categories/kids"
+            name: "Unisex",
+            path:"/collections/unisex"
         },
         {
             name: "Gift",
-            path:"/categories/gift"
+            path:""
         },
         {
             name: "New arrival",
-            path:"/categories/new-arrival"
+            path:""
         }
     ]
 
@@ -79,8 +79,8 @@ export default function PagesFooter(){
                     .map((data, index)=>(
                     <li className="text-white opacity-60 text-sm group" 
                     key={index.toString() + data.name.toString()}>
-                        <Link to="" className="group-hover:underline" 
-                        target={`${remote ? "_blank" : "_parent"}`}>
+                        <Link to={data.path} className="group-hover:underline" 
+                        target={`${remote ? "_blank" : ""}`}>
                             {data.name}
                         </Link>
                     </li>
@@ -141,7 +141,8 @@ export default function PagesFooter(){
                 <div className="text-center text-sm text-white opacity-60 font-medium">
                     <p>
                        © BALLAMAS 2024 by 
-                        <Link to="/" className="underline"> oluwatobi</Link>
+                        <Link to="https://www.linkedin.com/in/romuald-oluwatobi/en" 
+                        className="underline"  target={"_blank"}> oluwatobi</Link>
                     </p>
                 </div>  
             </div>

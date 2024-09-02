@@ -11,6 +11,7 @@ import {
     PageWrapper,
     OrderSummuryInfo,
     LabelInput,
+    AboutPage
 } from "@components";
 
 const title = "Ballamas - Checkout"
@@ -292,10 +293,7 @@ export function Checkout(){
     
     return(
         <>
-        <h1 className="font-chillax font-semibold 
-        sm:text-2xl text-xl mb-8">
-            Checkout
-        </h1>
+        <AboutPage name="Checkout"/>
         <div className="flex gap-y-16 gap-x-5 items-start justify-between flex-wrap lg:flex-nowrap">
             {orderCol}
             {paymentCol}

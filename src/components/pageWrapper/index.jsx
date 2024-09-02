@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import {
     PagesHead,
@@ -76,7 +76,7 @@ export default function PageWrapper(Page, pageDatas={}){
 
                         <PagesFooter />
 
-                        <div className="fixed top-1/2 -right-2 -translate-y-1/2">
+                        {/* <div className="fixed top-1/2 -right-2 -translate-y-1/2">
                             <Link to={"/cart"}
                             className="bg-slate-300 shadow-xl rounded-lg 
                             p-5 flex gap-1 items-center relative">
@@ -87,7 +87,7 @@ export default function PageWrapper(Page, pageDatas={}){
                                 </div>
                                 <span>{cartDatas.length}</span>
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
                     
                 </CartContext.Provider>

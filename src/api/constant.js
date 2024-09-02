@@ -35,7 +35,7 @@ export const collections = [
         id: "gid://shopify/Collection/429493977110",
         title: "Accessories",
         description: "",
-        url: "https://cdn.shopify.com/s/files/1/0688/1755/1382/collections/cd_black_sport_bag_containing_sport_accessories_one_towel_one_w_ef3e1828-4bde-4d7f-a6bf-e7abae4961e8.png?v=1675462987"
+        imgUrl: "https://cdn.shopify.com/s/files/1/0688/1755/1382/collections/cd_black_sport_bag_containing_sport_accessories_one_towel_one_w_ef3e1828-4bde-4d7f-a6bf-e7abae4961e8.png?v=1675462987"
     },
     {
         id: "gid://shopify/Collection/429512622102",
@@ -43,6 +43,6 @@ export const collections = [
         description: `Discover the pinnacle of Liquid's athletic wear in our Featured collection. 
         These pieces encapsulate our commitment to sustainable fashion, merging comfort, 
         style, and eco-consciousness.`,
-        url: "https://cdn.shopify.com/s/files/1/0688/1755/1382/collections/banner-2.png?v=1675462488"
+        imgUrl: "https://cdn.shopify.com/s/files/1/0688/1755/1382/collections/banner-2.png?v=1675462488"
     }
 ]

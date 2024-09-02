@@ -8,6 +8,8 @@ import OrderSummuryInfo from "@components/orderSummuryInfo";
 import LabelInput from "@components/labelInput/";
 import SimpleSkeleton from "@components/simpleSkeleton/";
 import Button from "@components/button";
+import Loading from "@components/loading";
+import AboutPage from "@components/aboutPage";
 
 export {
     PagesHead,
@@ -19,5 +21,7 @@ export {
     OrderSummuryInfo,
     LabelInput,
     SimpleSkeleton,
-    Button
+    Button,
+    Loading,
+    AboutPage
 }

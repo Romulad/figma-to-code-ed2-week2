@@ -5,7 +5,9 @@ import {
   CartPage,
   CheckoutPage,
   PaymentPage,
-  ProductDeatilPage
+  ProductDeatilPage,
+  CollectionsPage,
+  CollectionDetailPage
 } from "@pages";
 
 function App() {
@@ -24,6 +26,10 @@ function App() {
         <Route path="/payment" element={<PaymentPage />}
         />
         <Route path="/product/detail" element={<ProductDeatilPage />}
+        />
+        <Route path="/collections" element={<CollectionsPage />}
+        />
+        <Route path="/collections/:title" element={<CollectionDetailPage />}
         />
         <Route path="*" element={<></>}
         />
