@@ -66,3 +66,6 @@ In your terminal :
   ```
 
 And you're done! visit **localhost:5173** to view the app.
+
+**Note** : To run this app in production, you can use `nginx.Dockerfile` dockerfile
+to build the image and run the container
