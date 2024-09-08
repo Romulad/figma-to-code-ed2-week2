@@ -32,9 +32,9 @@ and you can run it with `docker run` command.
 on your system and Docker client is accessible from your command line
 - Then run this command:
 ```bash
-docker run --rm -p 5173:5173 
+docker run --rm -p 5173:5173 romulad/ballamas
 ```
-And you're done! visit the url displayed in your terminal to view the app.
+Visit the url displayed in your terminal to view the app.
 
 ### By setting up the dev environment
 To run this app locally make sure you have the following prerequisites on your system:
@@ -65,4 +65,4 @@ In your terminal :
   npm run dev
   ```
 
-And you're done! visit the url displayed in your terminal to view the app.
+And you're done! visit **localhost:5173** to view the app.
